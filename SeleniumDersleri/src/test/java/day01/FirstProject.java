@@ -1,9 +1,12 @@
 package day01;
 
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FirstProject {
 
@@ -13,9 +16,17 @@ public class FirstProject {
       driver.manage().window().maximize();
 driver.get("https://demoqa.com/");
 
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-      WebElement elementText=driver.findElement(By.xpath("//h5[text()='Elements']"));
-      elementText.click();
+      driver.findElement(
+          By.xpath("//h5[.='Elements']/ancestor::div[contains(@class,'top-card')]")
+      ).click();
+      By elements = By.xpath("//h5[text()='Elements']");
+      By adBanner = By.id("fixedban"); // maneə olan div
+
+      wait.until(ExpectedConditions.visibilityOfElementLocated(elements));
+      wait.until(ExpectedConditions.invisibilityOfElementLocated(adBanner));
+
 
       WebElement elementChekbox=driver.findElement(By.xpath("//span[text()='Check Box']"));
       elementChekbox.click();
