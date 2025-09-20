@@ -1,6 +1,7 @@
 package day01;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,7 +25,12 @@ surname.sendKeys("Abbasova");
 WebElement email=driver.findElement(By.xpath("//input[@id='userEmail']"));
 email.sendKeys("gunayabbasova93ga@gmail.com");
 
-WebElement gender =driver.findElement(By.xpath("//input[@id='gender-radio-2']"));
+    ((JavascriptExecutor) driver).executeScript(
+        "document.querySelectorAll(\"iframe[id^='google_ads_iframe']\").forEach(e=>e.remove());" +
+            "document.querySelectorAll('#fixedban, .popup, .advertisement').forEach(e=>e.remove());"
+    );
+
+WebElement gender =driver.findElement(By.cssSelector("label[for='gender-radio-2']"));
 gender.click();
 
 WebElement mobilPhone=driver.findElement(By.xpath("//input[@id='userNumber']"));
