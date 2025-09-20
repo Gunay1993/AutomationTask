@@ -15,7 +15,7 @@ public class PracticeForm {
 
   driver.get("https://demoqa.com/automation-practice-form");
 
-    WebElement name= driver.findElement(By.xpath("//label[@id='userName-label']"));
+    WebElement name= driver.findElement(By.id("firstName"));
 name.sendKeys("Gunay");
 
 WebElement surname=driver.findElement(By.xpath("//input[@id='lastName']"));
